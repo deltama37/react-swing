@@ -1,7 +1,12 @@
-import { FunctionComponent } from "react";
+import { Button } from "@chakra-ui/react";
+import type { FunctionComponent } from "react";
 
 const Parts: FunctionComponent = () => {
-  return <>b</>;
+  return (
+    <>
+      <Button colorScheme="blue">Button</Button>
+    </>
+  );
 };
 
 export default Parts;
