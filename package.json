@@ -5,7 +5,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:staged": "lint-staged",
+    "prettier:fix": "prettier --write",
+    "eslint:fix": "eslint --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.(ts|tsx)": [
+      "npm run prettier:fix",
+      "npm run eslint:fix"
+    ]
   },
   "dependencies": {
     "next": "12.0.7",
@@ -17,6 +27,8 @@
     "@types/react": "17.0.37",
     "eslint": "8.5.0",
     "eslint-config-next": "12.0.7",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
     "typescript": "4.5.4"
   }
 }
