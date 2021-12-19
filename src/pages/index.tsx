@@ -1,7 +1,12 @@
+import Parts from "@components/parts";
 import type { NextPage } from "next";
 
 const IndexPage: NextPage = () => {
-  return <>a</>;
+  return (
+    <>
+      <Parts />
+    </>
+  );
 };
 
 export default IndexPage;
