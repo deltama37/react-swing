@@ -1,14 +1,14 @@
+import { useTasksDispatch } from "@/contexts/tasks-context";
 import { Task } from "@/types/task";
 import { FunctionComponent, useState } from "react";
 
 type Props = {
   task: Task;
-  onChange: Function;
-  onDelete: Function;
 };
 
-const TaskDetail: FunctionComponent<Props> = ({ task, onChange, onDelete }) => {
+export const TaskDetail: FunctionComponent<Props> = ({ task }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const tasksDispatch = useTasksDispatch();
   let taskContent: JSX.Element;
 
   if (isEditing) {
@@ -17,9 +17,14 @@ const TaskDetail: FunctionComponent<Props> = ({ task, onChange, onDelete }) => {
         <input
           value={task.text}
           onChange={(e) =>
-            onChange({
-              ...task,
-              text: e.target.value,
+            tasksDispatch({
+              type: "changed",
+              payload: {
+                task: {
+                  ...task,
+                  text: e.target.value,
+                },
+              },
             })
           }
         />
@@ -41,16 +46,23 @@ const TaskDetail: FunctionComponent<Props> = ({ task, onChange, onDelete }) => {
         type={"checkbox"}
         checked={task.done}
         onChange={(e) => {
-          onChange({
-            ...task,
-            done: e.target.checked,
+          tasksDispatch({
+            type: "changed",
+            payload: { task: { ...task, done: e.target.checked } },
           });
         }}
       />
       {taskContent}
-      <button onClick={() => onDelete(task.id)}>Delete</button>
+      <button
+        onClick={() =>
+          tasksDispatch({
+            type: "deleted",
+            payload: { taskId: task.id },
+          })
+        }
+      >
+        Delete
+      </button>
     </label>
   );
 };
-
-export default TaskDetail;

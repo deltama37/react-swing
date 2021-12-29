@@ -1,31 +1,17 @@
+import { TaskDetail } from "@/components/task-detail";
+import { useTasks } from "@/contexts/tasks-context";
 import { FunctionComponent } from "react";
-import { Task } from "@/types/task";
-import TaskDetail from "@/components/task-detail";
 
-type Props = {
-  tasks: Task[];
-  onChangeTask: Function;
-  onDeleteTask: Function;
-};
+export const TaskList: FunctionComponent = () => {
+  const tasks = useTasks();
 
-const TaskList: FunctionComponent<Props> = ({
-  tasks,
-  onChangeTask,
-  onDeleteTask,
-}) => {
   return (
     <ul>
       {tasks.map((task) => (
         <li key={task.id}>
-          <TaskDetail
-            task={task}
-            onChange={onChangeTask}
-            onDelete={onDeleteTask}
-          />
+          <TaskDetail task={task} />
         </li>
       ))}
     </ul>
   );
 };
-
-export default TaskList;

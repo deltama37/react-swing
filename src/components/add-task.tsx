@@ -1,10 +1,8 @@
+import { useTasksDispatch } from "@/contexts/tasks-context";
 import { FunctionComponent, useState } from "react";
 
-type Props = {
-  onAddTask: Function;
-};
-
-const AddTask: FunctionComponent<Props> = ({ onAddTask }) => {
+export const AddTask: FunctionComponent = () => {
+  const tasksDispatch = useTasksDispatch();
   const [text, setText] = useState("");
 
   return (
@@ -12,12 +10,17 @@ const AddTask: FunctionComponent<Props> = ({ onAddTask }) => {
       <input
         placeholder={"Add task"}
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
       />
       <button
         onClick={() => {
           setText("");
-          onAddTask(text);
+          tasksDispatch({
+            type: "added",
+            payload: { text },
+          });
         }}
       >
         Add
@@ -25,5 +28,3 @@ const AddTask: FunctionComponent<Props> = ({ onAddTask }) => {
     </>
   );
 };
-
-export default AddTask;

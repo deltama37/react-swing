@@ -21,7 +21,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["src/components/*"],
-      "@/types/*": ["src/types/*"]
+      "@/types/*": ["src/types/*"],
+      "@/contexts/*": ["src/contexts/*"]
     }
   },
   "include": [
