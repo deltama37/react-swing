@@ -1,6 +1,6 @@
-import React from "react";
+import Parts from "@/components/parts";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Parts from "../components/parts";
+import React from "react";
 
 export default {
   title: "Example/Parts",

@@ -1,6 +1,7 @@
-import * as React from "react";
+import { TasksProvider } from "@/contexts/tasks-context";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { StoryContext } from "@storybook/react";
+import * as React from "react";
 
 /**
  * Add global context for RTL-LTR switching
@@ -22,9 +23,11 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   const dir = direction.toLowerCase();
   return (
     <ChakraProvider theme={extendTheme({ direction: dir })}>
-      <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
-        <StoryFn />
-      </div>
+      <TasksProvider>
+        <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
+          <StoryFn />
+        </div>
+      </TasksProvider>
     </ChakraProvider>
   );
 };
