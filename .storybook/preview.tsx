@@ -1,4 +1,3 @@
-import { TasksProvider } from "@/contexts/tasks-context";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { StoryContext } from "@storybook/react";
 import * as React from "react";
@@ -23,11 +22,9 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   const dir = direction.toLowerCase();
   return (
     <ChakraProvider theme={extendTheme({ direction: dir })}>
-      <TasksProvider>
-        <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
-          <StoryFn />
-        </div>
-      </TasksProvider>
+      <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
+        <StoryFn />
+      </div>
     </ChakraProvider>
   );
 };

@@ -40,12 +40,6 @@ const tasksReducer = (tasks: Task[], action: Action) => {
   }
 };
 
-const initialTasks: Task[] = [
-  { id: 0, text: "Philosopher’s Path", done: true },
-  { id: 1, text: "Visit the temple", done: false },
-  { id: 2, text: "Drink matcha", done: false },
-];
-
 const TasksContext = createContext<Task[]>([]);
 export const useTasks = () => {
   return useContext(TasksContext);
@@ -58,9 +52,19 @@ export const useTasksDispatch = () => {
 
 type Props = {
   children: ReactNode;
+  initialTasks?: Task[];
 };
 
-export const TasksProvider: VoidFunctionComponent<Props> = ({ children }) => {
+const initialStates: Task[] = [
+  { id: 0, text: "Philosopher’s Path", done: true },
+  { id: 1, text: "Visit the temple", done: false },
+  { id: 2, text: "Drink matcha", done: false },
+];
+
+export const TasksProvider: VoidFunctionComponent<Props> = ({
+  children,
+  initialTasks = initialStates,
+}) => {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   return (
