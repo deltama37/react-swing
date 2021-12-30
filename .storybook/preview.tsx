@@ -1,6 +1,6 @@
-import * as React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { StoryContext } from "@storybook/react";
+import * as React from "react";
 
 /**
  * Add global context for RTL-LTR switching

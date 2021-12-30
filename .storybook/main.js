@@ -1,4 +1,5 @@
 const path = require("path");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const toPath = (_path) => path.join(process.cwd(), _path);
 
@@ -16,6 +17,15 @@ module.exports = {
     },
   },
   webpackFinal: async (config) => {
+    config.resolve.modules = [
+      ...(config.resolve.modules || []),
+      path.resolve(__dirname, "../src"),
+    ];
+
+    config.resolve.plugins = [
+      ...(config.resolve.plugins || []),
+      new TsconfigPathsPlugin(),
+    ];
     return {
       ...config,
       resolve: {
